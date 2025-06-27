@@ -3,33 +3,32 @@ import AnswerOption from "../components/AnswerOption";
 
 
 
-export default function QuestionCard() {
+export default function QuestionCard () {
   return (
     <View style = {styles.questionCard}>
       <Text style ={styles.question}>What is React native?</Text>
       <View style = {{gap: 10}}>
         <AnswerOption/>
+        <AnswerOption/> 
         <AnswerOption/>
         <AnswerOption/>
-        <AnswerOption/>
-
-      </View>
-
-      
+      </View>      
     </View>
   );
 }
 
 
 
- const styles= StyleSheet.create({
+ const styles = StyleSheet.create({
     questionCard:{
         backgroundColor: 'white',
         padding: 20,
         borderRadius: 20,
         paddingVertical: 40,
-        gap:20,
+        gap:60,
         shadowColor: "#000",
+        marginTop: 150,
+        //shadow
         shadowOffset: {
 	      width: 0,
 	      height: 5,
@@ -41,7 +40,8 @@ export default function QuestionCard() {
     },
     question:{
         fontSize: 24,
-        fontWeight: '500'
+        fontWeight: '500',
+    },
 
-    }
+    
 })

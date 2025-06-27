@@ -1,29 +1,64 @@
-import { View, Text, StyleSheet } from "react-native"
-import QuestionCard from "../components/QuestionCard"
-
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import QuestionCard from '../components/QuestionCard';
 
 export default function QuizScreen() {
   return (
-    
-    <View 
-    style={styles.container}
-    >
-      
-      <QuestionCard/>
-      
-    </View>
+    <SafeAreaView style={styles.page}>
+      <View style={styles.container}>
+        {/* Header */}
+        <View>
+          <Text style={styles.title}>Question 1/5</Text>
+        </View>
+
+        {/* Body */}
+        <View>
+	        <QuestionCard />
+	        <Text style={styles.timer}>20 sec</Text>
+        </View>
+
+
+        {/* Footer */}
+        <View>
+          <Text>Next</Text>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-    container:{
-        // flex: 1,
-        backgroundColor: '#FDFEF4',
-        justifyContent:'center',
-        padding: 20,
-        alignItems: 'center',
-        gap:10,
-        marginTop: 100, 
+  page: {
+    backgroundColor: '#FDFEF4',
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 20,
+  },
+  title: {
+    textAlign: 'center',
+    color: '#005055',
+  },
+  timer: {
+    marginVertical: 15,
+    textAlign: 'center',
+    color: '#005055',
+    fontWeight: 'bold',
+  },
 
-      }
-})
+  button:{
+      backgroundColor:  "#005055",
+      padding:20,
+      borderRadius: 100,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+
+    buttonText:{
+        color: 'white',
+        fontWeight: 500,
+        fontSize: 16,
+        letterSpacing: 1.5,
+    }
+});
