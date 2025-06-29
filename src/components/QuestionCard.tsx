@@ -3,15 +3,16 @@ import AnswerOption from "../components/AnswerOption";
 
 
 
-export default function QuestionCard () {
+export default function QuestionCard (props) {
+  console.log(props)
   return (
     <View style = {styles.questionCard}>
-      <Text style ={styles.question}>What is React native?</Text>
+      <Text style ={styles.question}>{props.question.title}</Text>
       <View style = {{gap: 10}}>
-        <AnswerOption/>
-        <AnswerOption/> 
-        <AnswerOption/>
-        <AnswerOption/>
+        <AnswerOption option = {props.question.options[0]}/>
+        <AnswerOption option = {props.question.options[1]}/> 
+        <AnswerOption option = {props.question.options[2]}/>
+        <AnswerOption option = {props.question.options[3]}/>
       </View>      
     </View>
   );

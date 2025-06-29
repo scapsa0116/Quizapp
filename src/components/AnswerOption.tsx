@@ -1,12 +1,15 @@
 import { View, Text, StyleSheet } from "react-native"
 
+type AnswerOption = {
+    option: string;
+}
 
-
-export default function AnswerOption(){
+export default function AnswerOption(props: AnswerOption){
+    console.log(props)
 
     return(
         <View style = {styles.container}>
-            <Text>Answer</Text>
+            <Text>{props.option}</Text>
         </View>
     )
 }
