@@ -3,6 +3,7 @@ import QuestionCard from '../components/QuestionCard';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import questions from '../questions';
 
+
 const question = questions[0]
 
 export default function QuizScreen() {
@@ -43,6 +44,7 @@ export default function QuizScreen() {
 const styles = StyleSheet.create({
   page: {
     backgroundColor: '#FDFEF4',
+    flex:1,
   
     
   },
