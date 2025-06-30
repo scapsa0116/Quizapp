@@ -1,22 +1,32 @@
 import {View, Text, StyleSheet} from 'react-native'
+import { PropsWithChildren } from 'react'
+
+// type Card=PropsWithChildren<
+// {
+//     title: string;
+//     children: React.ReactNode
+// }>
+//          this is one way to add children
 
 type Card={
-    title: string
+title: string;
+children: React.ReactNode
 }
 
 
-export default function Card({title}: Card){
+export default function Card({title, children}:PropsWithChildren< Card>){
 
     return(
-        <View style = {styles.questionCard}>
-              <Text style ={styles.title}>{question.title}</Text>
+        <View style = {styles.card}>
+              <Text style ={styles.title}>{title}</Text>
+              {children}
         </View>      
     )
 
 }
 
 const styles = StyleSheet.create({
-    questionCard:{
+    card:{
         backgroundColor: 'white',
         padding: 20,
         borderRadius: 20,
