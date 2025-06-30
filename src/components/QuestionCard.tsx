@@ -21,7 +21,8 @@ export default function QuestionCard ({question}: QuestionCard) {
       <Text style ={styles.question}>{question.title}</Text>
       <View style = {{gap: 10}}>
         {question.options.map((option) => (
-          <AnswerOption 
+          <AnswerOption
+           key={option} 
            option = {option} 
            isSelected = {option === SelectedOption} 
            onPress ={() => {onOptionSelected(option)}}/>
