@@ -7,20 +7,26 @@ import { Question } from "../types";
 
 type QuestionCard = {
   question: Question,
+
   
 }
 
 export default function QuestionCard ({question}: QuestionCard) {
+
   const SelectedOption = question.options[0]
+  const onOptionSelected = (option: string) => {console.warn('selected: ', option) }
  
   return (
     <View style = {styles.questionCard}>
       <Text style ={styles.question}>{question.title}</Text>
       <View style = {{gap: 10}}>
-        <AnswerOption option = {question.options[0]} isSelected = {question.options[0] === SelectedOption}/>
-        <AnswerOption option = {question.options[1]} isSelected = {question.options[1] === SelectedOption}/> 
-        <AnswerOption option = {question.options[2]} isSelected = {question.options[2] === SelectedOption}/>
-        <AnswerOption option = {question.options[3]} isSelected = {question.options[3] === SelectedOption}/>
+        {question.options.map((option) => (
+          <AnswerOption 
+           option = {option} 
+           isSelected = {option === SelectedOption} 
+           onPress ={() => {onOptionSelected(option)}}/>
+        ))}
+ 
       </View>      
     </View>
   );
