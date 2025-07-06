@@ -1,19 +1,20 @@
-import { View, Pressable, Text, StyleSheet} from "react-native"
-import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+import { View, Pressable, Text, StyleSheet, PressableProps} from "react-native"
 
+type CustomButton = {
+  title: string;
+  rightIcon?: React.ReactNode;
+  onPress: () => void;
+  onLongPress: () => void;
+} & PressableProps;
 
+export default function CustomButton ({title, rightIcon, ...PressibleProps}: CustomButton){
 
-export default function CustomButton (){
     return(
         <View>
-<Pressable onPress={() => console.warn('Pressed')} style={styles.button}>
-          <Text style={styles.buttonText}>Next</Text>
-  {/* <FontAwesome6
-    name="arrow-right-long"
-    size={16}
-    color="white"
-    style={styles.buttonIcon}
-  /> */}
+          <Pressable style={styles.button} {...PressibleProps}>
+          <Text style={styles.buttonText}>{title}</Text>
+          <View style={styles.rightIcon}>{rightIcon}</View>
+  
         </Pressable>
 
 </View>
@@ -35,7 +36,7 @@ buttonText: {
   fontSize: 16,
   letterSpacing: 1.5,
 },
-buttonIcon: {
+rightIcon: {
   position: 'absolute',
   right: 20,
 },

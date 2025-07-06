@@ -1,6 +1,9 @@
 import { View, Text, StyleSheet, SafeAreaView, Pressable,} from 'react-native';
 import QuestionCard from '../components/QuestionCard';
 import questions from '../questions';
+import CustomButton from '../components/CustomButton';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+
 
 
 const question = questions[0]
@@ -22,6 +25,12 @@ export default function QuizScreen() {
 
 
         {/* Footer */}
+        <CustomButton 
+        title = "Next" 
+        onPress = {() => console.warn('I am pressed')}
+        onLongPress = {() => console.warn('ON LONG PRESS')}
+        rightIcon = {<FontAwesome6 name="arrow-right-long" size={16} color="white"
+        />}/>
         
         
     
