@@ -9,7 +9,7 @@ import { useQuizContext } from '../providers/QuizProvider';
 
 
 export default function QuizScreen() {
-  const { question, questionIndex, onNext, score, totalQuestions } = useQuizContext()
+  const { question, questionIndex, onNext, score, totalQuestions, bestScore } = useQuizContext()
 
   // const { question } = useQuizContext();
 
@@ -33,7 +33,7 @@ export default function QuizScreen() {
         </View>) : (
           <Card title = "WellDone!">
             <Text>"Correct Answer: {score}/{totalQuestions}"</Text>)
-            <Text>"Best Score: 10"</Text>
+            <Text>Best score: {bestScore}</Text>
           </Card>
         )}
 

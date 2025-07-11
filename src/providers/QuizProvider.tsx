@@ -1,6 +1,4 @@
-import { View, Text } from "react-native"
-import { createContext, useContext } from "react"
-import {PropsWithChildren, useState } from "react"
+import { createContext, useContext,PropsWithChildren, useState,useEffect } from "react"
 import questions from "../questions"
 import { Question } from "../types"
  
@@ -12,6 +10,7 @@ type QuizContext ={
     setSelectedOption: (newOption: string) => void;
     score: number;
     totalQuestions: number
+    bestScore: number
 }
 
 const QuizContext = createContext<QuizContext>({
@@ -20,6 +19,7 @@ const QuizContext = createContext<QuizContext>({
     setSelectedOption: () => {},
     score: 0,
     totalQuestions: 0,
+    bestScore: 0
     
 })
 export default function QuizProvider ({ children }: PropsWithChildren){
@@ -28,7 +28,17 @@ export default function QuizProvider ({ children }: PropsWithChildren){
   const question = questions[questionIndex];
   const [selectedOption, setSelectedOption] = useState<string | undefined>()
   const [score, setScore] = useState(0)
+  const [bestScore, setBestScore] = useState(0)
   const isFinished = questionIndex > questions.length;
+
+  useEffect(()=>{
+    if(isFinished === true && score > bestScore){
+        setBestScore(score)
+    }
+  },[isFinished])
+
+
+
   const restart = () => {
     setQuestionIndex(0)
     setSelectedOption('')
@@ -56,7 +66,8 @@ export default function QuizProvider ({ children }: PropsWithChildren){
             selectedOption, 
             setSelectedOption,
             score,
-            totalQuestions: questions.length
+            totalQuestions: questions.length,
+            bestScore,
         }}
         >
             {children}
