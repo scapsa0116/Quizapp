@@ -13,22 +13,16 @@ type QuestionCard = {
 }
 
 export default function QuestionCard ({question}: QuestionCard) {
-
-  const SelectedOption = question.options[0]
-  const onOptionSelected = (option: string) => {console.warn('selected: ', option) }
+ 
+  
+ 
  
   return (
     
       <Card title = {question.title}>
       <View style = {{gap: 10}}>
         {question.options.map((option) => (
-          <AnswerOption
-           key={option} 
-           option = {option} 
-           isSelected = {option === SelectedOption} 
-           onPress ={() => {onOptionSelected(option)}}/>
-        ))}
- 
+          <AnswerOption key={option} option = {option}/>))}
       </View> 
       </Card>     
    

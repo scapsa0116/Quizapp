@@ -1,33 +1,49 @@
 import { View, Text, StyleSheet, SafeAreaView, Pressable,} from 'react-native';
 import QuestionCard from '../components/QuestionCard';
-import questions from '../questions';
 import CustomButton from '../components/CustomButton';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+import Card from '../components/Card';
+import { useQuizContext } from '../providers/QuizProvider';
 
 
 
-const question = questions[0]
 
 export default function QuizScreen() {
+  const { question, questionIndex, onNext, score, totalQuestions } = useQuizContext()
+
+  // const { question } = useQuizContext();
+
+  
+
+  
+
   return (
     <SafeAreaView style={styles.page}>
    <View style={styles.container}>
 
         <View>
-          <Text style={styles.title}>Question 1/5</Text>
+          <Text style={styles.title}>Question {questionIndex +1}/{totalQuestions}</Text>
         </View>
 
         {/* Body */}
+        {question ? (
         <View>
-	        <QuestionCard question = {question}/>
-	        <Text style={styles.timer}>20 sec</Text>
-        </View>
+	          <QuestionCard question = {question}/>
+	          <Text style={styles.timer}>20 sec</Text>
+        </View>) : (
+          <Card title = "WellDone!">
+            <Text>"Correct Answer: {score}/{totalQuestions}"</Text>)
+            <Text>"Best Score: 10"</Text>
+          </Card>
+        )}
+
+
 
 
         {/* Footer */}
         <CustomButton 
         title = "Next" 
-        onPress = {() => console.warn('I am pressed')}
+        onPress = {onNext}
         onLongPress = {() => console.warn('ON LONG PRESS')}
         rightIcon = {<FontAwesome6 name="arrow-right-long" size={16} color="white"
         />}/>
