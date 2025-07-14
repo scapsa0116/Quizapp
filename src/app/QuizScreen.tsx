@@ -4,14 +4,60 @@ import CustomButton from '../components/CustomButton';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import Card from '../components/Card';
 import { useQuizContext } from '../providers/QuizProvider';
+import { useEffect, useState } from 'react';
 
 
+
+export const useTimer = (maxTime: number)=>{
+  const [time, setTime] = useState(maxTime)
+  let interval: NodeJs.TimeOut;
+
+  const startTimer =()=>{
+
+    setTime(maxTime)
+    interval = setInterval (()=>{
+      setTime((t)=> t -1);
+    },1000)}
+
+    
+
+    const clearTimer =() => {
+      clearInterval(interval)
+    };
+
+  return{
+    time,
+    startTimer,
+    clearTimer,
+    
+   }
+  }
+
+
+
+
+  
 
 
 export default function QuizScreen() {
   const { question, questionIndex, onNext, score, totalQuestions, bestScore } = useQuizContext()
 
-  // const { question } = useQuizContext();
+
+  const { time, startTimer, clearTimer } = useTimer(20);
+
+  useEffect(() => {
+    startTimer();
+
+    return () => {
+      clearTimer();
+    };
+  }, [question]);
+
+  useEffect(() => {
+    if (time <= 0) {
+      onNext();
+    }
+  }, [time]);
 
   
 
@@ -29,7 +75,7 @@ export default function QuizScreen() {
         {question ? (
         <View>
 	          <QuestionCard question = {question}/>
-	          <Text style={styles.timer}>20 sec</Text>
+	          <Text style={styles.timer}>{time}</Text>
         </View>) : (
           <Card title = "WellDone!">
             <Text>"Correct Answer: {score}/{totalQuestions}"</Text>)
