@@ -1,6 +1,7 @@
 import { createContext, useContext,PropsWithChildren, useState,useEffect } from "react"
 import questions from "../questions"
 import { Question } from "../types"
+import AsyncStorage from '@react-native-async-storage/async-storage';
  
 type QuizContext ={
     question?: Question;

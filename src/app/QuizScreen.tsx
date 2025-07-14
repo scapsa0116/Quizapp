@@ -4,34 +4,12 @@ import CustomButton from '../components/CustomButton';
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import Card from '../components/Card';
 import { useQuizContext } from '../providers/QuizProvider';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { useTimer } from '../hooks/useTimer';
 
 
 
-export const useTimer = (maxTime: number)=>{
-  const [time, setTime] = useState(maxTime)
-  let interval: NodeJs.TimeOut;
 
-  const startTimer =()=>{
-
-    setTime(maxTime)
-    interval = setInterval (()=>{
-      setTime((t)=> t -1);
-    },1000)}
-
-    
-
-    const clearTimer =() => {
-      clearInterval(interval)
-    };
-
-  return{
-    time,
-    startTimer,
-    clearTimer,
-    
-   }
-  }
 
 
 
