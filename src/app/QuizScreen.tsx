@@ -6,6 +6,8 @@ import Card from '../components/Card';
 import { useQuizContext } from '../providers/QuizProvider';
 import { useEffect, useState, useRef } from 'react';
 import { useTimer } from '../hooks/useTimer';
+import LottieView from 'lottie-react-native';
+import emoji from '../../assets/emoji.json'
 
 
 
@@ -56,6 +58,10 @@ export default function QuizScreen() {
 	          <Text style={styles.timer}>{time}</Text>
         </View>) : (
           <Card title = "WellDone!">
+            <LottieView 
+            style = {{width: 100, height: 100}}
+            autoPlay
+            source={require('../../assets/emoji.json')}/>
             <Text>"Correct Answer: {score}/{totalQuestions}"</Text>)
             <Text>Best score: {bestScore}</Text>
           </Card>
