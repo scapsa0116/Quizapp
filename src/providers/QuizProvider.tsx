@@ -32,9 +32,14 @@ export default function QuizProvider ({ children }: PropsWithChildren){
   const [bestScore, setBestScore] = useState(0)
   const isFinished = questionIndex > questions.length;
 
+  useEffect(()=> {
+    loadBestScore();
+  },[])
+
   useEffect(()=>{
     if(isFinished === true && score > bestScore){
-        setBestScore(score)
+        setBestScore(score);
+        saveBestScore(score)
     }
   },[isFinished])
 
@@ -57,6 +62,29 @@ export default function QuizProvider ({ children }: PropsWithChildren){
         }
     setQuestionIndex((currValue) => currValue +1)
   }
+
+  const saveBestScore = async (value: number) => {
+   
+  try {
+     console.log('Save best score: ', bestScore)
+    await AsyncStorage.setItem('best-score', value.toString());
+  } catch (e) {
+    // saving error
+  }
+};
+
+
+const loadBestScore = async () => {
+  try {
+    const value = await AsyncStorage.getItem('best-score');
+    if (value !== null) {
+      // value previously stored
+      setBestScore(Number.parseInt(value))
+    }
+  } catch (e) {
+    // error reading value
+  }
+};
 
   
   return(
